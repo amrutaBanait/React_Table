@@ -1,3 +1,4 @@
+import "./DataList.css"
 import React, {useState, useEffect} from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,8 +14,8 @@ function DataList (){
     const columns =[
         { dataField:"id" ,text:"Id"},
         { dataField:"name" ,text:"Name", sort:true, filter:textFilter()},
-        { dataField:"username" ,text:"Usermname", sort:true, filter:textFilter()},
-        { dataField:"email" ,text:"Email", sort:true}
+        { dataField:"username" ,text:"Username", sort:true, filter:textFilter()},
+        { dataField:"email" ,text:"Email", sort:true, filter:textFilter()}
     ] 
     //Array for pagination
     const pagination = paginationFactory({
@@ -44,7 +45,7 @@ function DataList (){
   }, [])
 
     return (
-      <div>
+      <div className="container">
         <BootstrapTable
           bootstrap4
           keyField="id"
