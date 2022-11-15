@@ -1,16 +1,38 @@
 import React, {useState, useEffect} from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
+import paginationFactory from "react-bootstrap-table2-paginator";
+import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
 
 function DataList (){
     const [userList, setUserList] = useState([]);
-
+//Array for sorting
     const columns =[
         { dataField:"id" ,text:"Id"},
-        { dataField:"name" ,text:"Name"},
-        { dataField:"username" ,text:"Usermname"},
-        { dataField:"email" ,text:"Email"}
+        { dataField:"name" ,text:"Name", sort:true},
+        { dataField:"username" ,text:"Usermname", sort:true},
+        { dataField:"email" ,text:"Email", sort:true}
     ]
+    //Array for pagination
+    const pagination = paginationFactory({
+        page: 1,
+        sizePerPage : 5,
+        lastPageText: ">>",
+        firstPageText: "<<",
+        nextPageText: ">",
+        prePageText: "<",
+        showTotal: true,
+        alwaysShowAllBtns: true,
+        onPageChange: function(size, sizePerPage){
+            console.log("page", page)
+            console.log("sizePerPage", sizePerPage)
+        },
+        onSizePerPageChange:function(page, sizePerPage){
+            console.log("page", page)
+            console.log("sizePerPage", sizePerPage)
+        }
+    });
 
   useEffect (()=>{
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -21,7 +43,7 @@ function DataList (){
 
     return (
         <div>
-            <BootstrapTable keyField="id" columns = {columns} data={userList} /> 
+            <BootstrapTable bootstrap4 keyField="id" columns = {columns} data={userList} /> 
             {/* <table>
                 <tr>
                     <th>Id</th>
