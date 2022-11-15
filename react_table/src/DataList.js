@@ -9,9 +9,31 @@ function DataList (){
     .then(result => setUserList(result))
     .catch(error => console.log(error))
   }, [])
-  
+
     return (
-        <div>DataList</div>
+        <div>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                </tr>
+                {
+                    userList && userList.length > 0 ? 
+                    userList.map(usr =>
+                       <tr>
+                        <td>{usr.id}</td>
+                        <td>{usr.name}</td>
+                        <td>{usr.username}</td>
+                        <td>{usr.email}</td>
+                        </tr>
+                        )
+                        : "Loading"
+                }
+            </table>
+
+        </div>
     )
 }
 
