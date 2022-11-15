@@ -4,16 +4,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
+import filterFactory , {textFilter} from "react-bootstrap-table2-filter";
+import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 
 function DataList (){
     const [userList, setUserList] = useState([]);
 //Array for sorting
     const columns =[
         { dataField:"id" ,text:"Id"},
-        { dataField:"name" ,text:"Name", sort:true},
-        { dataField:"username" ,text:"Usermname", sort:true},
+        { dataField:"name" ,text:"Name", sort:true, filter:textFilter()},
+        { dataField:"username" ,text:"Usermname", sort:true, filter:textFilter()},
         { dataField:"email" ,text:"Email", sort:true}
-    ]
+    ] 
     //Array for pagination
     const pagination = paginationFactory({
         page: 1,
@@ -49,6 +51,7 @@ function DataList (){
           columns={columns}
           data={userList}
           pagination= {pagination}
+          filter = {filterFactory()}
         />
         {/* <table>
                 <tr>
