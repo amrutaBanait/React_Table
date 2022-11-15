@@ -1,7 +1,16 @@
 import React, {useState, useEffect} from "react";
+import BootstrapTable from "react-bootstrap-table-next";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function DataList (){
     const [userList, setUserList] = useState([]);
+
+    const columns =[
+        { dataField:"id" ,text:"Id"},
+        { dataField:"name" ,text:"Name"},
+        { dataField:"username" ,text:"Usermname"},
+        { dataField:"email" ,text:"Email"}
+    ]
 
   useEffect (()=>{
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -12,7 +21,8 @@ function DataList (){
 
     return (
         <div>
-            <table>
+            <BootstrapTable keyField="id" columns = {columns} data={userList} /> 
+            {/* <table>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
@@ -31,7 +41,7 @@ function DataList (){
                         )
                         : "Loading"
                 }
-            </table>
+            </table> */}
 
         </div>
     )
