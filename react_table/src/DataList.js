@@ -25,11 +25,11 @@ function DataList (){
         showTotal: true,
         alwaysShowAllBtns: true,
         onPageChange: function(size, sizePerPage){
-            console.log("page", page)
+          //  console.log("page", page)
             console.log("sizePerPage", sizePerPage)
         },
         onSizePerPageChange:function(page, sizePerPage){
-            console.log("page", page)
+           // console.log("page", page)
             console.log("sizePerPage", sizePerPage)
         }
     });
@@ -42,9 +42,15 @@ function DataList (){
   }, [])
 
     return (
-        <div>
-            <BootstrapTable bootstrap4 keyField="id" columns = {columns} data={userList} /> 
-            {/* <table>
+      <div>
+        <BootstrapTable
+          bootstrap4
+          keyField="id"
+          columns={columns}
+          data={userList}
+          pagination= {pagination}
+        />
+        {/* <table>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
@@ -64,9 +70,8 @@ function DataList (){
                         : "Loading"
                 }
             </table> */}
-
-        </div>
-    )
+      </div>
+    );
 }
 
 export default DataList;
